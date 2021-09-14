@@ -94,7 +94,6 @@ public class App {
                             }
                     }
                     break;
-
                 default:
                     System.out.println("Opção Inválida");
                     break;
