@@ -1,5 +1,4 @@
 public class ExceptionTurmaCheia extends Exception {
-    static final int turmaTotal = 20;
     int alunoId = Aluno.id;
 
     public ExceptionTurmaCheia(int alunoId) {

@@ -1,15 +1,16 @@
 public class Aluno {
     static int id;
-    static String nome;
+    static String nome, sobrenome;
     static int telefone;
 
-    public Aluno(String nome, int telefone) {
+    public Aluno(String nome, String sobrenome, int telefone) {
         super();
         Aluno.nome = nome;
         Aluno.telefone = telefone;
+        Aluno.sobrenome = sobrenome;
     }
 
-    public void setId(int id) {
+    static void setId(int id) {
         Aluno.id = id;
     }
 
@@ -17,7 +18,7 @@ public class Aluno {
         return Aluno.id;
     }
 
-    public void setNome(String nome) {
+    static void setNome(String nome) {
         Aluno.nome = nome;
     }
 
@@ -25,7 +26,7 @@ public class Aluno {
         return Aluno.nome;
     }
 
-    public void setTelefone(int telefone) {
+    static void setTelefone(int telefone) {
         Aluno.telefone = telefone;
     }
 

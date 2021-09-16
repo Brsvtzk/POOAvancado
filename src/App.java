@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-
+        // int id = 1;
         int opcao = 0;
         int opcao2 = 0;
         Scanner inputUsuario = new Scanner(System.in);
@@ -10,7 +10,7 @@ public class App {
         do {
             System.out.println("\n                   =========================");
             System.out.println("                  | 1 - Matricular Aluno    |");
-            System.out.println("                  | 2 - Consultar Matricula |");
+            System.out.println("                  | 2 - Consultar Matrícula |");
             System.out.println("                   =========================\n");
             System.out.print("\n");
 
@@ -26,15 +26,18 @@ public class App {
                 case 1:
                     try {
                         if (Aluno.id <= Turma.turmaTotal) {
-                            System.out.println("Nome do Aluno:");
+                            System.out.println("Nome:");
                             String entradaNome = inputUsuario.next();
                             String nome = entradaNome;
+                            System.out.println("Sobrenome:");
+                            String entradaSobrenome = inputUsuario.next();
+                            String sobrenome = entradaSobrenome;
                             // Aluno.nome = entradaNome;
                             System.out.println("Telefone de Contato:");
                             int entradaTel = inputUsuario.nextInt();
                             int telefone = entradaTel;
                             // Aluno.telefone = entradaTel;
-                            Turma.armazenaAluno(nome, telefone);
+                            Turma.armazenaAluno(nome, sobrenome, telefone);
                         } else {
                             throw new ExceptionTurmaCheia(Aluno.id);
                         }
@@ -67,8 +70,11 @@ public class App {
                     switch (opcao2) {
                         case 3:
                             try {
-                                for (int i = 0; i <= Aluno.id; i++) {
-                                    System.out.println("ID:" + Aluno.id + "\nNome do Aluno:" + Aluno.nome);
+                                for (int i = 1; i <= Turma.index; i++) {
+                                    System.out.println("ID: " + Aluno.id + "\nNome do Aluno: " + Aluno.nome + " "
+                                            + Aluno.sobrenome + "\nTelefone: " + Aluno.telefone);
+                                    // String resultado = Turma.a[i].toString();
+                                    // System.out.println(resultado);
                                 }
 
                             } catch (Exception e) {
@@ -83,8 +89,8 @@ public class App {
                                 String alunoNome = nome;
                                 for (int i = 0; i <= Turma.index; i++) {
                                     if (alunoNome == Aluno.nome) {
-                                        System.out.println("ID:" + Aluno.id + "\nNome do Aluno:" + Aluno.nome
-                                                + "\nTelefone de Contato:" + Aluno.telefone);
+                                        System.out.println("ID:" + Aluno.id + "\nNome do Aluno:" + Aluno.nome + " "
+                                                + Aluno.sobrenome + "\nTelefone de Contato:" + Aluno.telefone);
                                     } else {
                                         throw new ExceptionAlunoNaoEncontrado(alunoNome);
                                     }
@@ -95,8 +101,9 @@ public class App {
                     }
                     break;
                 default:
-                    System.out.println("Opção Inválida");
-                    break;
+                    int opcaoInvalida = opcao;
+                    throw new ExceptionOpcaoInvalida(opcaoInvalida);
+
             }
         } while (opcao != 0);
 
