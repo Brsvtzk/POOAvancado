@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        // int id = 1;
+        int id = 0;
         int opcao = 0;
         int opcao2 = 0;
         Scanner inputUsuario = new Scanner(System.in);
@@ -37,7 +37,7 @@ public class App {
                             int entradaTel = inputUsuario.nextInt();
                             int telefone = entradaTel;
                             // Aluno.telefone = entradaTel;
-                            Turma.armazenaAluno(nome, sobrenome, telefone);
+                            Turma.armazenaAluno(nome, sobrenome, telefone, id);
                         } else {
                             throw new ExceptionTurmaCheia(Aluno.id);
                         }
@@ -70,9 +70,9 @@ public class App {
                     switch (opcao2) {
                         case 3:
                             try {
-                                for (int i = 1; i <= Turma.index; i++) {
-                                    System.out.println("ID: " + Aluno.id + "\nNome do Aluno: " + Aluno.nome + " "
-                                            + Aluno.sobrenome + "\nTelefone: " + Aluno.telefone);
+                                for (int i = 1; i <= Turma.a.length; i++) {
+                                    System.out.println("Nº de Matrícula: " + Aluno.id + "\nNome do Aluno: " + Aluno.nome
+                                            + " " + Aluno.sobrenome + "\nTelefone: " + Aluno.telefone);
                                     // String resultado = Turma.a[i].toString();
                                     // System.out.println(resultado);
                                 }
@@ -101,9 +101,7 @@ public class App {
                     }
                     break;
                 default:
-                    int opcaoInvalida = opcao;
-                    throw new ExceptionOpcaoInvalida(opcaoInvalida);
-
+                    System.out.println("Opção inválida");
             }
         } while (opcao != 0);
 
