@@ -2,7 +2,12 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        int id = 0;
+        String nome = null;
+        String sobrenome = null;
+        int telefone = 0;
+        Turma t = new Turma();
+        int count = 1;
+        int id = Aluno.getId();
         int opcao = 0;
         int opcao2 = 0;
         Scanner inputUsuario = new Scanner(System.in);
@@ -25,21 +30,28 @@ public class App {
             switch (opcao) {
                 case 1:
                     try {
-                        if (Aluno.id <= Turma.turmaTotal) {
+                        if (Aluno.getId() <= t.getTurmaTotal()) {
                             System.out.println("Nome:");
                             String entradaNome = inputUsuario.next();
-                            String nome = entradaNome;
                             System.out.println("Sobrenome:");
                             String entradaSobrenome = inputUsuario.next();
-                            String sobrenome = entradaSobrenome;
                             // Aluno.nome = entradaNome;
                             System.out.println("Telefone de Contato:");
                             int entradaTel = inputUsuario.nextInt();
-                            int telefone = entradaTel;
+                            sobrenome = entradaSobrenome;
+                            nome = entradaNome;
+                            telefone = entradaTel;
+                            count = id++;
+                            Aluno a = new Aluno(nome, sobrenome, telefone, id);
+                            a.setNome(nome);
+                            a.setSobrenome(sobrenome);
+                            a.setTelefone(telefone);
+                            a.setId(id);
                             // Aluno.telefone = entradaTel;
-                            Turma.armazenaAluno(nome, sobrenome, telefone, id);
+
+                            // t.armazenaAluno(nome, sobrenome, telefone, id);
                         } else {
-                            throw new ExceptionTurmaCheia(Aluno.id);
+                            throw new ExceptionTurmaCheia(id);
                         }
                     } catch (Exception tel) {
                         tel.printStackTrace();
@@ -60,7 +72,7 @@ public class App {
                         opcao2 = entradaUsuario2;
                         if (opcao2 == 1) {
                             opcao2 = 3;
-                        } else {
+                        } else if (opcao2 == 2) {
                             opcao2 = 4;
                         }
 
@@ -70,11 +82,12 @@ public class App {
                     switch (opcao2) {
                         case 3:
                             try {
-                                for (int i = 1; i <= Turma.a.length; i++) {
-                                    System.out.println("Nº de Matrícula: " + Aluno.id + "\nNome do Aluno: " + Aluno.nome
-                                            + " " + Aluno.sobrenome + "\nTelefone: " + Aluno.telefone);
+                                for (int i = 1; i <= t.getA().length; i++) {
+                                    System.out.println("Nº de Matrícula: " + Aluno.getId() + "\nNome do Aluno: "
+                                            + Aluno.getNome() + " " + Aluno.getSobrenome() + "\nTelefone: "
+                                            + Aluno.getTelefone());
                                     // String resultado = Turma.a[i].toString();
-                                    // System.out.println(resultado);
+                                    System.out.println(t.getA().length);
                                 }
 
                             } catch (Exception e) {
@@ -85,12 +98,13 @@ public class App {
                         case 4:
                             try {
                                 System.out.println("Digite o Nome --------->");
-                                String nome = inputUsuario.next();
+                                nome = inputUsuario.next();
                                 String alunoNome = nome;
-                                for (int i = 0; i <= Turma.index; i++) {
-                                    if (alunoNome == Aluno.nome) {
-                                        System.out.println("ID:" + Aluno.id + "\nNome do Aluno:" + Aluno.nome + " "
-                                                + Aluno.sobrenome + "\nTelefone de Contato:" + Aluno.telefone);
+                                for (int i = 0; i <= t.getIndex(); i++) {
+                                    if (alunoNome == Aluno.getNome()) {
+                                        System.out.println("ID:" + Aluno.getId() + "\nNome do Aluno:" + Aluno.getNome()
+                                                + " " + Aluno.getSobrenome() + "\nTelefone de Contato:"
+                                                + Aluno.getTelefone());
                                     } else {
                                         throw new ExceptionAlunoNaoEncontrado(alunoNome);
                                     }

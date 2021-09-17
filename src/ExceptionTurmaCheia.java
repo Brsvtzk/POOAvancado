@@ -1,5 +1,6 @@
 public class ExceptionTurmaCheia extends Exception {
-    int alunoId = Aluno.id;
+    int id = Aluno.getId();
+    int alunoId = Aluno.getId();
 
     public ExceptionTurmaCheia(int alunoId) {
         super();

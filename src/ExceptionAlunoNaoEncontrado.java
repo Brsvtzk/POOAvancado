@@ -1,6 +1,6 @@
 public class ExceptionAlunoNaoEncontrado extends Exception {
-    int indexAluno = Aluno.id;
-    String alunoNome = Aluno.nome;
+    int indexAluno = Aluno.getId();
+    String alunoNome = Aluno.getNome();
 
     public ExceptionAlunoNaoEncontrado(String alunoNome) {
         super();
